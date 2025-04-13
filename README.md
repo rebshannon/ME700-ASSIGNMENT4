@@ -2,32 +2,36 @@
 
 # Set Up
 
-# Poiseuille Flow
+Set up adapted from https://github.com/Lejeune-Lab-Graduate-Course-Materials/fenicsX  
 
+FEniCSX reference:  https://fenicsproject.org/download/
 
-Fuid flow through a channel is known as Poiseuille flow, shown in the figure. In this case, the horizontal flow is driven by a pressure difference across the channel (left to right).
+Set up the conda environment and test that the code is functioning. 
 
-__CHANNEL FLOW IMAGE__
-
-
-
-## Navier Stokes Equation
-
-The incompressible Naview Stoke equations is given as
-
-$$\rho \left(\frac{\partial u}{\partial t}+u\cdot \nabla u \right) = \nabla \cdot \sigma (u, p) + f$$  
-$$ \nabla\cdot u = 0$$  
-
-The first equation consdiers conservation of momentum, with the terms on the right hand side being the stress tensor and the body forces (e.g. pressure). The second equation is tthe continuity equation. When considering Poiseuille flow, these can be scaled based on the problem geometry. Detail on scaling can be found in [1]
-
-$$\rho \left(\frac{\partial u}{\partial t}+\text{Re} u\cdot u \right) = -\nabla p + \nabla ^2 u$$  
-$$ \nabla\cdot u = 0$$  
-$$ Re = \frac{\rho UH}{\mu}$$
-
-## Assumptions
-
-Assume the fluid is incompressible . In this problem, we will consider a 2D channel, so the velocity has $x$ and $y$ components.  
-$$u = (u_x,u_y)$$  
-For a horizontal channel, there is only horizontal flow. The velocity ($u_x$) is not dependent on $x$ because of the continuity equation.
-
-$$ u = (u_x(x,y),0)$$
+1. The conda environment can be setup on an SCC terminal. Start by loading miniconda.
+  
+    ```bash 
+    module load miniconda
+    ```
+2. Create and activate the environment.  
+    ```bash
+    mamba create -n fenicsx-env
+    ```
+    ```bash
+    mamba activate fenicsx-env
+    ```
+3. Install necessary pacakges with mamba.  
+    ```bash
+    mamba install -c conda-forge fenics-dolfinx mpich pyvista
+    ```  
+4. Install necessary pacakges with pip.
+    ```bash
+    pip install imageio
+    pip install gmsh
+    pip install PyYAML
+    ```
+5. On VSCode, activate the environment you just created.  
+     ```bash
+    mamba activate fenicsx-env
+    ```
+6. To run an example walkthrough in FEniCSX, open *PoiseuilleFlow_walkthrough.ipynb*.
